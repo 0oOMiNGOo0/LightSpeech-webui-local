@@ -1,0 +1,19 @@
+# next.js
+frontend/.next/
+
+# vercel
+.vercel
+
+# misc
+.DS_Store
+
+# dependencies
+frontend/node_modules
+backend/venv
+
+# files
+backend/inference_text.txt
+backend/data
+backend/output
+frontend/public/output
+*__pycache__
