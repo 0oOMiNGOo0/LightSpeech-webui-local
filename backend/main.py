@@ -1,4 +1,5 @@
 import os
+import re
 import wave
 import asyncio
 import eventlet
@@ -35,11 +36,18 @@ def handle_message():
     sio.send({'current':100, 'total': 100})
     sio.sleep(0)
 
-    output_directory = '../frontend/public/output'
+    output_directory = 'output'
     os.makedirs(output_directory, exist_ok=True)
-    
+    name = 'test.txt'
+
+    def extract_number(filename):
+        match = re.search(r'\[P\]\[(\d+)\]', filename)
+        if match:
+            return int(match.group(1))
+        return float('inf')
+
     data = []
-    for i in sorted(os.listdir('output/wavs')):
+    for i in sorted(os.listdir('output/wavs'), key=extract_number):
         w = wave.open('output/wavs/' + i, 'rb')
         data.append([w.getparams(), w.readframes(w.getnframes())])
         w.close()
