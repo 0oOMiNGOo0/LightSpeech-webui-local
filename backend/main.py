@@ -50,7 +50,6 @@ def handle_message():
         full_wav.writeframes(data[i][1])
     full_wav.close()
 
-
     output_paths = [x for x in os.listdir(output_directory) if 'wav' in x]
     sio.emit('downloads', output_paths)
     sio.send({})
