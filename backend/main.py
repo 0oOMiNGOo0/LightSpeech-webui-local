@@ -36,7 +36,7 @@ def handle_message():
     sio.send({'current':100, 'total': 100})
     sio.sleep(0)
 
-    output_directory = 'output'
+    output_directory = '../frontend/public/output'
     os.makedirs(output_directory, exist_ok=True)
     name = 'test.txt'
 
