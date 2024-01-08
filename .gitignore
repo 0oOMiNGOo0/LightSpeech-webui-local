@@ -17,3 +17,4 @@ backend/data
 backend/output
 frontend/public/output
 *__pycache__
+*yarn.lock

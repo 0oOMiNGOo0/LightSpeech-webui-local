@@ -36,8 +36,10 @@ def handle_message():
     sio.sleep(0)
 
     output_directory = '../frontend/public/output'
+    os.makedirs(output_directory, exist_ok=True)
+    
     data = []
-    for i in os.listdir('output/wavs'):
+    for i in sorted(os.listdir('output/wavs')):
         w = wave.open('output/wavs/' + i, 'rb')
         data.append([w.getparams(), w.readframes(w.getnframes())])
         w.close()
@@ -48,7 +50,6 @@ def handle_message():
         full_wav.writeframes(data[i][1])
     full_wav.close()
 
-    os.makedirs(output_directory, exist_ok=True)
 
     output_paths = [x for x in os.listdir(output_directory) if 'wav' in x]
     sio.emit('downloads', output_paths)
